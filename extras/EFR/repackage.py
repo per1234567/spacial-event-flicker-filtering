@@ -4,14 +4,14 @@ import h5py
 import argparse
 from tqdm import tqdm
 
-def compute(source_file, target_file):
+def compute(source_file, target_file, first_n):
     data = h5py.File(source_file)
     ts = data["events"]["t"]
     ps = data["events"]["p"]
     ys = data["events"]["y"]
     xs = data["events"]["x"]
 
-    N = len(ts)
+    N = min(first_n, len(ts))
     chunk_size = int(1e6)
 
     f = h5py.File(target_file, "w")
@@ -32,5 +32,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', '--source_file', type=str, default="sequences/events.h5")
     parser.add_argument('-t', '--target_file', type=str, default="sequences/repackaged_events.h5")
+    parser.add_argument('-n', '--first_n', type=int, default=int(1e10), help="Upper bound of how many events to consider")
     args = parser.parse_args()
-    compute(args.source_file, args.target_file)
+    compute(args.source_file, args.target_file, args.first_n)
