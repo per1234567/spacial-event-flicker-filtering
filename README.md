@@ -1,4 +1,6 @@
-# Improving Estimation Performance by Preprocessing Event Data to Remove Flickering Artifacts
+# Improving Optical Flow Estimation Accuracy Using Space-Aware De-Flickering
+
+This repository is part of a 2024 [Research Project](https://github.com/TU-Delft-CSE/Research-Project) conducted at TU Delft.
 
 This code contains the algorithm discussed in the paper. Additional files aiding in visualization and reproduction are included as well.
 
